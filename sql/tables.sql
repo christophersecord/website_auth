@@ -11,3 +11,16 @@ create table wa_user (
 
 	unique(emailAddress)
 );
+
+
+create table wa_login (
+	loginID int not null auto_increment primary key,
+	loginToken char(36) not null,
+
+	userID int not null,
+
+	loginTime datetime not null,
+	logoutTime datetime not null,
+
+	foreign key(userID) references wa_user(userID)
+);
