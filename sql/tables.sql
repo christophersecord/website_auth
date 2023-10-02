@@ -26,6 +26,7 @@ create table wa_login (
 
 	loginTime datetime not null,
 	logoutTime datetime not null,
+	hitCount int not null default 1,
 
 	foreign key(userID) references wa_user(userID)
 );
