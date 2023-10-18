@@ -8,7 +8,7 @@ drop procedure if exists wa_userLogin;
 
 DELIMITER //
 
-/** clientLogin
+/** userLogin
  * logs a user in by creating a login record
  */
 create procedure wa_userLogin (

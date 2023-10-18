@@ -10,16 +10,18 @@ drop procedure if exists wa_userCreate;
 
 DELIMITER //
 
-/** clientCreate
- * creates a client
+/** userCreate
+ * creates a user
  */
 create procedure wa_userCreate (
 	in pUserName varchar(250),
 	in pPasswd varchar(250),
 
-	out userID int = 0
+	out pUserID int
 )
 begin
+
+	set pUserID = 0;
 
 	if not exists (
 		select * from wa_user where userName = pUserName
@@ -32,12 +34,12 @@ begin
 			username,
 			passwd
 		) values (
-			pEmailAddres,
-			sha2(pUserName+pPasswd,224)
+			pUserName,
+            sha2(concat(pUserName,pPasswd),224)
 		)
 		;
 
-		set userID = last_insert_id();
+		set pUserID = last_insert_id();
 	end if;
 end //
 
